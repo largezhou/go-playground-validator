@@ -132,6 +132,8 @@ type FieldError interface {
 	// message
 	Value() interface{}
 
+	SetParam(param string)
+
 	// Param returns the param value, in string form for comparison; this will also
 	// help with generating an error message
 	Param() string
@@ -228,6 +230,10 @@ func (fe *fieldError) StructField() string {
 // message
 func (fe *fieldError) Value() interface{} {
 	return fe.value
+}
+
+func (fe *fieldError) SetParam(param string) {
+	fe.param = param
 }
 
 // Param returns the param value, in string form for comparison; this will
